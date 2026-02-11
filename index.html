@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Báo Tường Thanh Xuân</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f9f7f7;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+            background-image: linear-gradient(to bottom, #f9f7f7, #f0e6ff);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            border: 1px solid #eae0ff;
+        }
+        
+        /* Header */
+        .header {
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            font-family: 'Georgia', serif;
+        }
+        
+        .header .subtitle {
+            font-size: 1.4rem;
+            font-style: italic;
+            opacity: 0.9;
+        }
+        
+        .header-decoration {
+            position: absolute;
+            font-size: 2rem;
+            opacity: 0.2;
+        }
+        
+        .decoration-1 { top: 20px; left: 30px; }
+        .decoration-2 { top: 20px; right: 30px; }
+        .decoration-3 { bottom: 20px; left: 30px; }
+        .decoration-4 { bottom: 20px; right: 30px; }
+        
+        /* Newspaper Content */
+        .newspaper-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            padding: 30px;
+        }
+        
+        .column {
+            padding: 20px;
+            border-radius: 10px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .column:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+        }
+        
+        .column-1 {
+            background-color: #fff8e1;
+            border-left: 5px solid #ffc107;
+        }
+        
+        .column-2 {
+            background-color: #e8f5e9;
+            border-left: 5px solid #4caf50;
+        }
+        
+        .column-3 {
+            background-color: #f3e5f5;
+            border-left: 5px solid #9c27b0;
+        }
+        
+        .column-title {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: #2c3e50;
+            border-bottom: 2px dashed;
+            padding-bottom: 8px;
+        }
+        
+        .column-1 .column-title {
+            color: #e67e22;
+        }
+        
+        .column-2 .column-title {
+            color: #27ae60;
+        }
+        
+        .column-3 .column-title {
+            color: #8e44ad;
+        }
+        
+        .article {
+            margin-bottom: 25px;
+        }
+        
+        .article-title {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+        
+        .article-content {
+            text-align: justify;
+            margin-bottom: 10px;
+        }
+        
+        .quote {
+            font-style: italic;
+            padding: 15px;
+            background-color: rgba(255, 255, 255, 0.7);
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid #3498db;
+        }
+        
+        .author {
+            text-align: right;
+            font-weight: bold;
+            color: #7f8c8d;
+        }
+        
+        .image-placeholder {
+            height: 200px;
+            background-color: #ecf0f1;
+            border-radius: 8px;
+            margin: 15px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .image-placeholder img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .image-caption {
+            text-align: center;
+            font-style: italic;
+            color: #7f8c8d;
+            font-size: 0.9rem;
+            margin-top: -10px;
+            margin-bottom: 15px;
+        }
+        
+        /* Footer */
+        .footer {
+            background: linear-gradient(to right, #2c3e50, #4a6491);
+            color: white;
+            text-align: center;
+            padding: 20px;
+            border-top: 5px solid #ffc107;
+        }
+        
+        .footer p {
+            margin-bottom: 10px;
+        }
+        
+        .editor-info {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .editor {
+            font-style: italic;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .header .subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .newspaper-content {
+                grid-template-columns: 1fr;
+                padding: 20px;
+            }
+            
+            .header-decoration {
+                display: none;
+            }
+        }
+        
+        .highlight {
+            background-color: #fffacd;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-weight: bold;
+        }
+        
+        .poem {
+            text-align: center;
+            font-style: italic;
+            line-height: 1.8;
+            padding: 15px;
+            background: linear-gradient(to bottom right, #fdfcfb, #e2d1c3);
+            border-radius: 10px;
+            margin: 15px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <header class="header">
+            <div class="header-decoration decoration-1">✿</div>
+            <div class="header-decoration decoration-2">✿</div>
+            <h1>THANH XUÂN</h1>
+            <div class="subtitle">"Tuổi trẻ như cơn mưa rào, dù bị cảm lạnh, vẫn muốn quay lại để được ướt mưa thêm lần nữa"</div>
+            <div class="header-decoration decoration-3">✿</div>
+            <div class="header-decoration decoration-4">✿</div>
+        </header>
+        
+
+        <main class="newspaper-content">
+            <!-- Column 1 -->
+            <div class="column column-1">
+                <h2 class="column-title"><i class="fas fa-heart"></i> Ký Ức Đẹp</h2>
+                
+                <div class="article">
+                    <h3 class="article-title">Những Chuyến Xe Đạp</h3>
+                    <div class="image-placeholder">
+                        <img src="https://6971b2210fbe657fd5e5fec4.imgix.net/to2-1.jpg?w=2047&h=1366" alt="Xe đạp tuổi thanh xuân">
+                    </div>
+                    <div class="image-caption">Chiếc xe đạp - người bạn đồng hành của tuổi trẻ</div>
+                    <p class="article-content">Tuổi thanh xuân của mỗi người có lẽ đều gắn liền với hình ảnh chiếc xe đạp. Những buổi sáng đạp xe vội vã đến trường, những chuyến đi chơi xa cùng bạn bè, hay những lần chở nhau dưới cơn mưa hè bất chợt. <span class="highlight">Chiếc xe đạp không chỉ là phương tiện, mà còn là chứng nhân cho những kỷ niệm đẹp nhất của tuổi trẻ.</span></p>
+                </div>
+                
+                <div class="article">
+                    <h3 class="article-title">Bài Hát Thời Học Sinh</h3>
+                    <p class="article-content">Ai mà không nhớ những bài hát cùng hát với bạn bè trong giờ ra chơi, trong những buổi sinh hoạt lớp hay trên chuyến xe về quê. Những giai điệu ấy đã trở thành nhạc nền cho thanh xuân, mỗi khi vang lên lại gợi nhớ về một thời đã qua.</p>
+                    
+                    <div class="quote">
+                        "Tuổi thanh xuân giống như một cơn mưa rào. Dù từng bị cảm lạnh vì tắm mưa, bạn vẫn muốn được đắm mình trong cơn mưa ấy thêm một lần nữa."
+                        <div class="author">- Khuyết danh -</div>
+                    </div>
+                </div>
+            </div>
+            
+
+            <div class="column column-2">
+                <h2 class="column-title"><i class="fas fa-graduation-cap"></i> Trường Lớp</h2>
+                
+                <div class="article">
+                    <h3 class="article-title">Bạn Bè - Gia Đình Thứ Hai</h3>
+                    <div class="image-placeholder">
+                        <img src="https://6971b2210fbe657fd5e5fec4.imgix.net/to2-2.jpg?w=2047&h=1366&ar=2047%3A1366" alt="Bạn bè tuổi học trò">
+                    </div>
+                    <div class="image-caption">Những người bạn cùng ta trưởng thành</div>
+                    <p class="article-content">Trong hành trình thanh xuân, bạn bè chính là những người đồng hành quý giá nhất. Cùng nhau chia sẻ niềm vui, nỗi buồn, cùng nhau vượt qua khó khăn và cổ vũ cho những ước mơ. <span class="highlight">Những người bạn thời thanh xuân thường trở thành những người bạn tri kỷ suốt đời.</span></p>
+                </div>
+                
+                <div class="article">
+                    <h3 class="article-title">Lời Thầy Cô</h3>
+                    <p class="article-content">Thầy cô không chỉ dạy kiến thức mà còn dạy cách làm người. Những bài học đạo đức, những lời khuyên chân thành, thậm chí cả những lời la mắng nghiêm khắc - tất cả đều xuất phát từ tấm lòng yêu thương học trò.</p>
+                    
+                    <div class="poem">
+                        Thanh xuân như giấc mộng dài<br>
+                        Thầy cô bạn bè mãi hoài trong tim<br>
+                        Dẫu cho năm tháng trôi đi<br>
+                        Ký ức đẹp ấy còn ghi đời đời
+                    </div>
+                </div>
+            </div>
+            
+
+            <div class="column column-3">
+                <h2 class="column-title"><i class="fas fa-rocket"></i> Ước Mơ</h2>
+                
+                <div class="article">
+                    <h3 class="article-title">Hoài Bão Tuổi Trẻ</h3>
+                    <div class="image-placeholder">
+                        <img src="https://6971b2210fbe657fd5e5fec4.imgix.net/to2-3.jpg?w=2048&h=1367" alt="Ước mơ tuổi trẻ">
+                    </div>
+                    <div class="image-caption">Tuổi trẻ là thời điểm đẹp nhất để theo đuổi ước mơ</div>
+                    <p class="article-content">Tuổi thanh xuân là lúc chúng ta có đủ nhiệt huyết và can đảm để theo đuổi những ước mơ lớn lao. Dù có thể vấp ngã, thất bại, nhưng chính những trải nghiệm ấy giúp ta trưởng thành và mạnh mẽ hơn. <span class="highlight">Đừng bao giờ ngừng mơ ước, bởi ước mơ chính là động lực để ta tiến về phía trước.</span></p>
+                </div>
+                
+                <div class="article">
+                    <h3 class="article-title">Bài Học Từ Thất Bại</h3>
+                    <p class="article-content">Trong hành trình thanh xuân, thất bại đôi khi là người thầy vĩ đại nhất. Mỗi lần vấp ngã là một bài học, mỗi lần thất bại là cơ hội để nhìn nhận lại bản thân và hoàn thiện mình hơn. Quan trọng không phải là ta thất bại bao nhiêu lần, mà là ta đứng dậy sau mỗi lần thất bại như thế nào.</p>
+                    
+                    <div class="quote">
+                        "Tuổi trẻ không phải là khoảng thời gian của cuộc đời, mà là trạng thái của tâm hồn. Nó không phải là thời kỳ của gò má đỏ hồng, đôi môi đỏ mọng và đôi chân dẻo dai. Nó là ý chí, là phẩm chất của trí tưởng tượng, là sức mạnh của cảm xúc."
+                        <div class="author">- Samuel Ullman -</div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+
+        <footer class="footer">
+            <p><strong>BÁO TƯỜNG "THANH XUÂN"</strong> </p>
+            <p>"Hãy sống hết mình để sau này không phải hối tiếc về một thanh xuân đã qua"</p>
+            <div class="editor-info">
+                <div class="editor"></div>
+                <div class="editor">Thiết kế: team 2</div>
+                <div class="editor"></div>
+            </div>
+            <p>© TEAM 2 - Lớp 12C3 - Trường THPT QTER</p>
+        </footer>
+    </div>
+
+    <script>
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const title = document.querySelector('.header h1');
+            
+
+            let hue = 0;
+            setInterval(() => {
+                hue = (hue + 0.5) % 360;
+                title.style.textShadow = `2px 2px 4px rgba(0, 0, 0, 0.3), 0 0 20px hsl(${hue}, 70%, 60%)`;
+            }, 100);
+            
+
+            const articles = document.querySelectorAll('.article');
+            articles.forEach(article => {
+                article.addEventListener('mouseenter', function() {
+                    this.style.transform = 'scale(1.01)';
+                    this.style.transition = 'transform 0.3s ease';
+                });
+                
+                article.addEventListener('mouseleave', function() {
+                    this.style.transform = 'scale(1)';
+                });
+            });
+            
+
+            const columns = document.querySelectorAll('.column');
+            columns.forEach((column, index) => {
+
+                column.style.opacity = '0';
+                column.style.transform = 'translateY(20px)';
+                
+                setTimeout(() => {
+                    column.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+                    column.style.opacity = '1';
+                    column.style.transform = 'translateY(0)';
+                }, 300 + (index * 200));
+            });
+        });
+    </script>
+</body>
+</html>
