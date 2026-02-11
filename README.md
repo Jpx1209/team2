@@ -1,2 +1,2 @@
-# team2
-jpx1209
+# TEAM 2 - 12C3 QTER
+
